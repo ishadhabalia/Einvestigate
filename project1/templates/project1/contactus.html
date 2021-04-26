@@ -1,0 +1,168 @@
+{% extends "project1/base.html" %}
+{% load static %}
+  
+{% block content %}
+<style>
+  .user_card {
+			width: 500px;
+      height:350px;
+			margin-top: 870px;
+			
+			background: #EFE7E7;
+			
+			position: relative;
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+			padding: 10px;
+			box-shadow: 0 8px 9px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			-webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			-moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      margin-left: 350px;margin-top: -370px;
+
+
+		}
+    .border-danger { border: 2px solid #007bff; border-radius: 5px; }
+    .form-signin {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin-top: 40px;
+    
+  }
+  .form-signin .checkbox {
+    font-weight: 400;
+  }
+  .form-signin .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+  }
+  .form-signin .form-control:focus {
+    z-index: 2;
+  }
+  .form-signin input[type="email"] {
+    margin-bottom: 10px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  .h3{
+    text-align: center;
+    margin-top: -190px;
+  }
+  table.con-table td {
+
+margin: 12px 12px 12px 12px;
+
+}
+</style>
+<div class="bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark  p-3" style="background-color:rgba(0,0,0,0.2)">
+
+
+        <a class="navbar-brand" mx-3 px-4" href="#">Einvestigate</a>
+     
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+  
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+      <ul class="navbar-nav   mt-2 mt-lg-0 ml-auto ">
+      <li class="nav-item ">
+        <a class="nav-link  mx-3 px-4" href="{% url 'home' %}">Home</a>
+      </li>
+       <li class="nav-item mx-4">
+    {% if user.is_authenticated %}
+    {%if user.profile.role|divisibleby:"2"%}
+  <a  class="nav-link" href="{% url 'dspprofile' %}">Profile</a>
+  {%elif user.profile.role|divisibleby:"3"%}
+  <a  class="nav-link" href="{% url 'ioprofile' %}">Profile</a>
+  {% endif %}
+{% else %}
+  
+{% endif %}
+</li>
+      <li class="nav-item ">
+        <a class="nav-link mx-4" href="{% url 'About_Us' %}">About Us</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link mx-4" href="{% url 'Statistics' %}">Statistics</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active mx-4" href="{% url 'Contact_Us' %}">Contact Us</a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link  mx-3 px-4" href="{% url 'TrackCase' %}">Track Case</a>
+      </li>
+      
+      <li class="nav-item mx-3">
+    {% if user.is_authenticated %}
+ 
+ <a  class="nav-link" href="{% url 'logout' %}">Logout</a>
+{% else %}
+  
+  <a class="nav-link" href="{% url 'login' %}">Login</a>
+{% endif %}
+</li>
+     
+    </ul>
+       
+      
+    </div>
+  </nav> </div> 
+
+  
+
+  <footer class=" text-white" style="width: 700px;margin-left: 100px;margin-top: 470px;border-radius: 5px;text-decoration-color: white;">
+    <div class="container h-100" >
+      <div  class="d-flex justify-content-center form_container">
+        <div class="user_card border-danger ">
+          <div class="d-flex justify-content-center">
+    <div class="p-4 pb-0">
+    <section class="mb-4">
+      <table class="con-table">
+        <tr>
+          <td>
+  <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button" style=" background-color: black;border-color: black; ">
+   <i class="fas fa-map-marker-alt fa-2x " style="border-color: black;"></i>
+  </a></td>
+  <td style="color:black ;padding: 10px;">K.J Somaiya College of Engineering, Mumbai</td>
+</tr>
+
+
+
+<tr >
+  <td ><a class="btn btn-outline-light btn-floating m-1" href="#!" role="button" style=" background-color: black;border-color: black; ">
+    <i class="fas fa-phone-alt fa-2x" style="border-color: black;"></i>
+    </a></td>
+    <td style="color:black ;padding: 10px;"> 7896541236</td>
+  </tr>
+
+  <tr>
+    <td><a class="btn btn-outline-light btn-floating m-1" href="#!" role="button" style=" background-color: black;border-color: black; ">
+      <i class="far fa-envelope fa-2x" style="border-color: black;"></i>
+      </a></td>
+   <td style="color:black ;padding: 10px;"> miniproject@gmail.com </td>
+    </tr>
+    </table>
+  </section>
+  </div>
+
+</div>
+</div>
+</div>
+</div>
+</footer>
+
+
+<!-- <div class="card" style="width: 500px;height: 500px;margin-left: 650px;margin-top: -350px; border-color: #D65959;"></div> -->
+
+
+      
+
+
+  {% endblock%}
+    

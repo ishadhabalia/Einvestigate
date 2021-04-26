@@ -1,0 +1,234 @@
+{% extends "project1/base.html" %}
+{% load static %}
+
+{% block styles %}
+a:hover{
+  color: #D65959;
+}
+{% endblock %}
+  
+{% block content %}
+<div class="bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark  p-3" style="background-color:rgba(0,0,0,0.2)">
+
+
+        <a class="navbar-brand" mx-3 px-4" href="#">Einvestigate</a>
+     
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+  
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+      <ul class="navbar-nav   mt-2 mt-lg-0 ml-auto ">
+      <li class="nav-item ">
+        <a class="nav-link active  mx-3 px-4" href="{% url 'home' %}">Home</a>
+      </li>
+       <li class="nav-item mx-4">
+    {% if user.is_authenticated %}
+    {%if user.profile.role|divisibleby:"2"%}
+  <a  class="nav-link" href="{% url 'dspprofile' %}">Profile</a>
+  {%elif user.profile.role|divisibleby:"3"%}
+  <a  class="nav-link" href="{% url 'ioprofile' %}">Profile</a>
+  {% endif %}
+{% else %}
+  
+{% endif %}
+</li>
+      <li class="nav-item ">
+        <a class="nav-link mx-4" href="{% url 'Contact_Us' %}">About Us</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link mx-4" href="{% url 'Statistics' %}">Statistics</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link mx-4" href="{% url 'Contact_Us' %}">Contact Us</a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link  mx-3 px-4" href="{% url 'TrackCase' %}">Track Case</a>
+      </li>
+      
+      <li class="nav-item mx-3">
+    {% if user.is_authenticated %}
+ 
+ <a  class="nav-link" href="{% url 'logout' %}">Logout</a>
+{% else %}
+  
+  <a class="nav-link" href="{% url 'login' %}">Login</a>
+{% endif %}
+</li>
+     
+    </ul>
+       
+      
+    </div>
+  </nav> </div>
+   {% comment %} <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-3">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+  
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+      <ul class="navbar-nav nav-pills  mt-2 mt-lg-0 ml-auto mr-auto ">
+      <li class="nav-item ">
+        <a class="nav-link active  mx-3 px-4" href="{% url 'home' %}">HOME</a>
+      </li>
+      <li class="nav-item mx-4">
+    {% if user.is_authenticated %}
+    {%if user.profile.role|divisibleby:"2"%}
+  <a  class="nav-link" href="{% url 'dspprofile' %}">PROFILE</a>
+  {%elif user.profile.role|divisibleby:"3"%}
+  <a  class="nav-link" href="{% url 'ioprofile' %}">PROFILE</a>
+  {% endif %}
+{% else %}
+  
+{% endif %}
+</li>
+      <li class="nav-item ">
+        <a class="nav-link mx-4" href="#">ABOUT US</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link mx-4" href="#">STATISTICS</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link mx-4" href="#">CONTACT US</a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link  mx-3 px-4" href="{% url 'TrackCase' %}">TRACK CASE</a>
+      </li>
+      
+      <li class="nav-item mx-3">
+    {% if user.is_authenticated %}
+ 
+ <a  class="nav-link" href="{% url 'logout' %}">LOGOUT</a>
+{% else %}
+  
+  <a class="nav-link" href="{% url 'login' %}">LOGIN</a>
+{% endif %}
+</li>
+     
+    </ul>
+       
+      
+    </div>
+  </nav> {% endcomment %}
+    
+
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+    <div class="text"><h2><u>HELPLINE NUMBERS</u></h2>Often when in distress or crisis, we tend to lose sight of things, and become lost and confused as to what to do next. In such situations, a little bit of carefulness and preparedness is all that is needed from our side to handle it. Thankfully, we have access to emergency services when those events occur. To assist people in such unnerving situations there are various helpline numbers.To know more <a href= "https://indianhelpline.com/" target="_blank">Click here</a></div>
+      <img class="d-block w-100" src="{% static 'project1/images/bg1.jpg' %}" height="700vh"alt="First slide">
+    </div>
+   
+    <div class="carousel-item">
+    <div class="text"><h2><u>CYBERSECURITY</u></h2>Cyberattacks can happen on a global scale as well with hackers breaching government organizations. Cybersecurity is important because it encompasses everything that pertains to protecting our sensitive data, personally identifiable information (PII), protected health information (PHI), personal information, intellectual property, data, and governmental and industry information systems from theft and damage attempted by criminals and adversaries. To know more <a href= "https://www.dsci.in/content/cyber-security" target="_blank">Click here</a></div>
+      <img class="d-block w-100" src="{% static 'project1/images/bg2.jpg' %}" height="700vh" alt="Second slide">
+    </div>
+    
+    <div class="carousel-item">
+     <div class="text"><h2><u>SAFETY TIPS</u></h2>Crime prevention can reduce the long term costs associated both economic and social. Effective, responsible crime prevention enhances the quality of life of all citizens. Often times, there are steps that people can take to protect themselves and reduce the risk that they will become victimized. Staying alert, minimizing distractions, and listening to your instincts can protect you from harm when you’re out and about. To know more such tips <a href= "http://mahapolice.gov.in/en/safety-tips/" target="_blank">Click here</a></div>
+     <img class="d-block w-100" src="{% static 'project1/images/bg3.jpg' %}" height="700vh" alt="Third slide">
+    
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+<div class="container">
+  <div class="card-deck border-primary">
+    <div class="card d-flex">
+      <img class="card-img-top" src="{% static 'project1/images/robbery.svg' %}" alt="Card image cap">
+      <div style="text-align:center" class="card-body ">
+        <h5 style="text-align:center;color:#D65959" class="card-title ">ROBBERY</h5>
+        <p class="card-text " style="color:#2B2727">Robbery is the crime of taking or attempting to take anything of value by force, threat of force, or by putting the victim in fear. Robbery is differentiated from other forms of theft. </p>
+        <p class="card-text"> <small class="text-muted"><a href= "https://en.wikipedia.org/wiki/Robbery" target="_blank">CLICK HERE</a> to read more</small></p>
+      </div>
+    </div>
+    <div class="card d-flex">
+      <img class="card-img-top" src="{% static 'project1/images/corruption.svg' %}" alt="Card image cap">
+      <div  style="text-align:center" class="card-body">
+        <h5 style="text-align:center ;color:#D65959"" >CORRUPTION</h5>
+        <p class="card-text" style="color:#2B2727">Corruption is a form of criminal offense undertaken by a person or organization  with a position of authority, to acquire illicit benefit or abuse power for one's private gain.</p>
+        <p class="card-text"> <small class="text-muted"><a href= "https://en.wikipedia.org/wiki/Corruption" target="_blank">CLICK HERE</a> to read more</small></p>
+      </div>
+    </div>
+    <div class="card d-flex">
+      <img class="card-img-top" src="{% static 'project1/images/murder.svg' %}" alt="Card image cap">
+      <div style="text-align:center" class="card-body">
+        <h5 style="text-align:center ;color:#D65959"" class="card-title">VIOLENT CRIME</h5>
+        <p class="card-text" style="color:#2B2727">A violent crime, violent felony, crime of violence or crime of a violent nature is a crime in which an offender or perpetrator uses or threatens to use force upon a victim.</p>
+      <p class="card-text"><small class="text-muted"><a href= "https://en.wikipedia.org/wiki/Violent_crime" target="_blank">CLICK HERE</a> to read more</small></p> 
+      </div>
+    </div>
+    <div class="card d-flex">
+      <img class="card-img-top" src="{% static 'project1/images/poaching.svg' %}" alt="Card image cap">
+      <div style="text-align:center" class="card-body">
+        <h5 style="text-align:center ;color:#D65959"" class="card-title">POACHING</h5>
+        <p class="card-text" style="color:#2B2727">Poaching is the illegal hunting or capturing of wild animals. Poaching is a major existential threat to numerous wild organisms worldwide and is a contributor to biodiversity loss.</p>
+             <p class="card-text"><small class="text-muted"><a href= "https://en.wikipedia.org/wiki/Poaching" target="_blank">CLICK HERE</a> to read more</small></p> 
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="bg-dark text-center text-white">
+  <!-- Grid container -->
+  <div class="container p-4 pb-0">
+    <!-- Section: Social media -->
+    <section class="mb-4">
+      <!-- Facebook -->
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+        ><i class="fab fa-facebook-f"></i
+      ></a>
+
+      <!-- Twitter -->
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+        ><i class="fab fa-twitter"></i>
+
+      <!-- Instagram -->
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+        ><i class="fab fa-instagram"></i
+      ></a>
+
+      <!-- Linkedin -->
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+        ><i class="fab fa-linkedin-in"></i
+      ></a>
+
+    </section>
+    <!-- Section: Social media -->
+  </div>
+  <!-- Grid container -->
+
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    © 2020 Copyright:
+    <a class="text-white" href="https://mdbootstrap.com/"></a>
+  </div>
+  <!-- Copyright -->
+</footer>
+ 
+
+
+ <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    {% block js %}{% endblock%}
+     {% endblock content %}
+ 

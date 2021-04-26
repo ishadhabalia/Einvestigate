@@ -1,0 +1,13 @@
+{% extends "addcases/base.html" %}
+
+{% block title %}
+Case Not Added
+{% endblock title %}
+
+{% block body %}
+<script>
+if(!alert("Investigating officer's id and name do not match! Enter valid ID and Name")) 
+    document.location = '{% url "Addcase" %}';
+</script>
+
+{% endblock body %}

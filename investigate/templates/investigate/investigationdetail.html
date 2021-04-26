@@ -1,0 +1,379 @@
+{% extends "project1/base.html" %}
+{% load static %}
+{% block styles %}
+  
+    .content:not(:first-child) {
+    display: none;
+    }
+.detail .card
+{
+  background:#EFE7E7;
+}
+h3{
+  text-align:center;
+  color:#D65959;
+}
+.container
+    {
+       margin-top:20px;
+       width:75%;
+       padding-left:50px;
+    }
+
+  {% endblock %} 
+  {% block title %}
+Investigation Detail
+{% endblock title %}
+  
+{% block content %}
+
+<div class="bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark  p-3" style="background-color:rgba(0,0,0,0.2)">
+
+
+        <a class="navbar-brand" mx-3 px-4" href="#">Einvestigate</a>
+     
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+  
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+      <ul class="navbar-nav   mt-2 mt-lg-0 ml-auto ">
+      <li class="nav-item ">
+        <a class="nav-link  mx-3 px-4" href="{% url 'home' %}">Home</a>
+      </li>
+
+      <li class="nav-item mx-4">
+    {% if user.is_authenticated %}
+    {%if user.profile.role|divisibleby:"2"%}
+  <a  class="nav-link" href="{% url 'dspprofile' %}">Profile</a>
+  {%elif user.profile.role|divisibleby:"3"%}
+  <a  class="nav-link" href="{% url 'ioprofile' %}">Profile</a>
+  {% endif %}
+{% else %}
+  
+{% endif %}
+</li>
+      
+     
+      <li class="nav-item">
+        <a class="nav-link mx-3" href="{% url 'crimerecord' %}">View Criminal Records</a>
+      </li>
+      
+      <li class="nav-item mx-3">
+    {% if user.is_authenticated %}
+ 
+<a  class="nav-link" href="{% url 'logout' %}">Logout</a>
+{% else %}
+  
+  <a class="nav-link" href="{% url 'login' %}">Login</a>
+{% endif %}
+</li>
+     
+    </ul>
+       
+    
+    </div>
+  </nav>
+   </div> 
+{% comment %} <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-3">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+  
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+      <ul class="navbar-nav nav-pills  mt-2 mt-lg-0 ml-auto mr-auto ">
+      <li class="nav-item ">
+        <a class="nav-link  mx-3 px-4" href="{% url 'home' %}">HOME</a>
+      </li>
+     <li class="nav-item mx-4">
+    {% if user.is_authenticated %}
+    {%if user.profile.role|divisibleby:"2"%}
+  <a  class="nav-link" href="{% url 'dspprofile' %}">PROFILE</a>
+  {%elif user.profile.role|divisibleby:"3"%}
+  <a  class="nav-link" href="{% url 'ioprofile' %}">PROFILE</a>
+  {% endif %}
+  {% else %}
+  
+{% endif %}
+</li>
+      
+     
+      <li class="nav-item">
+        <a class="nav-link mx-3" href="#">VIEW CASES</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link mx-3" href="#">VIEW CRIMINAL RECORDS</a>
+      </li>
+      
+      <li class="nav-item mx-3">
+    {% if user.is_authenticated %}
+ 
+<a  class="nav-link" href="{% url 'logout' %}">LOGOUT</a>
+{% else %}
+  
+  <a class="nav-link" href="{% url 'login' %}">LOGIN</a>
+{% endif %}
+</li>
+     
+    </ul>
+    </div>
+  </nav> {% endcomment %}
+<div class='container my-3' style="width:75%;padding-left:30px; padding-right:30px; padding-top:20px">
+
+<h3>CASE DETAILS:</h3>
+<div class="detail border-primary" style="margin-top:10px">
+<div class="card d-flex">
+<div style="text-align:center" class="card-body ">
+<h5 style="text-align:center;color:#D65959" class="card-title ">Case ID: {{ case_object.case_id  }}</h5>
+<div class="container">
+  <p> {{ case_object.case_description }}</p>
+</div>
+
+<hr>
+<p class="card-text "  >
+<div class="row no-gutters">
+  <div class="col-lg-6" >
+    <p>Case Category: {{ case_object.case_category }}</p>
+  </div>
+  <div class="col-lg-6">
+    <p>Crime Location: {{ case_object.crime_location }}</p>
+  </div>
+</div>
+<div class="row no-gutters">
+  <div class="col-lg-6">
+    <p>Crime Date: {{ case_object.crime_date }}</p>
+  </div>
+  <div class="col-lg-6">
+    <p>Complainant Name: {{ case_object.complainant_name }}</p>
+  </div>
+</div>
+<div class="row no-gutters">
+  <div class="col-lg-6">
+    <p>Complainant Contact: {{ case_object.complainant_contact }}</p>
+  </div>
+  <div class="col-lg-6">
+    <p>Complainant Email: {{ case_object.complainant_email }}</p>
+  </div>
+</div>
+<div class="row no-gutters">
+  <div class="col-lg-6">
+    <p>Accused Name: {{ case_object.accused_name }}</p>
+  </div>
+  <div class="col-lg-6 ">
+    <p>Accused Contact: {{ case_object.accused_contact }}</p>
+  </div>
+</div>
+<div class="row no-gutters">
+  <div class="col-lg-6">
+    <p>Accused Email: {{ case_object.accused_email }}</p>
+  </div>
+  <div class="col-lg-6">
+    <p>Case Added on: {{ case_object.case_added_date }}</p>
+  </div>
+  </div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+<hr>
+
+<!-- Options for viewing -->
+<div class="container py-2 selectSection ">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" >View</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse "  id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+            <button type="button" data-number="1" class="btn active" id="clicked">Text Evidence</button>
+            <script>
+              window.onload = function(){
+              document.getElementById('clicked').click();
+              }
+            </script>
+        </li>
+        <li class="nav-item">
+          <button type="button" data-number="2" class="btn">Evidence Files</button>
+        </li>
+        <li class="nav-item">
+          <button type="button" data-number="3" class="btn">Suspects</button>
+        </li>
+        <li class="nav-item">
+          <button type="button" data-number="4" class="btn">Leads Gathered</button>
+        </li>
+        <li class="nav-item">
+          <button type="button" data-number="5" class="btn">View Case Status History</button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+
+
+
+    <!-- Display Required information -->
+    
+    <div class="contentSection">
+
+      <!-- text evidence -->
+    <div class="content" data-number="1">
+      {% for t in textevidence_edits %}
+    <div class = 'container my-4'>
+    <div class="card" style="background:#EFE7E7">
+        <h5 class="card-header " style="text-align:center">{{ t.edit_title }}</h5>
+        <div class="card-body">
+          <p class="card-text">{{t.edit_content}}</p>
+        </div>
+        <div class="card-body">
+          <p class="card-text">{{t.edit_datetime}}</p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- file evidence -->
+  <div class="content" data-number="2">
+    {% for f in fileevidence_edits %}
+    <div class = 'container my-4'>
+    <div class="card" style="background:#EFE7E7">
+        <h5 class="card-header" style="text-align:center" >{{ f.edit_title }}</h5>
+        <div class="card-body" style="text-align:center">
+          <p class="card-text">{{f.file_name}}</p>
+          <a class="card-text" href="{% url 'Download' f.file_name %} ">
+            <button class="btn btn-dark ">
+              Download File
+              </button>
+          </a>
+        </div>
+        <div class="card-body">
+          <p class="card-text">{{f.edit_datetime}}</p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+        
+</div>
+
+<!-- suspects -->
+<div class="content" data-number="3">
+  {% for s in suspect_edits %}
+    <div class = 'container my-4'>
+    <div class="card" style="background:#EFE7E7">
+        <h5 class="card-header" style="text-align:center">{{ s.suspect_name }}</h5>
+        <div class="card-body">
+          <p class="card-text">{{s.suspect_contact}}</p>
+        </div>
+        <div class="card-body">
+          <p class="card-text">{{s.suspect_address}}</p>
+        </div>
+        <div class="card-body">
+          <p class="card-text">{{s.suspect_reason}}</p>
+        </div>
+        <div class="card-body">
+          <p class="card-text">{{s.edit_datetime}}</p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+<!-- leads -->
+<div class="content" data-number="4">
+  {% for l in lead_edits %}
+    <div class = 'container my-4'>
+    <div class="card" style="background:#EFE7E7">
+        <h5 class="card-header" style="text-align:center">{{ l.edit_title }}</h5>
+        <div class="card-body">
+          <p class="card-text">{{l.edit_content}}</p>
+        </div>
+        <div class="card-body">
+          <p class="card-text">{{l.edit_datetime}}</p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+<!-- case status history-->
+<div class="content" data-number="5">
+  {% for c in case_statuses %}
+    <div class = 'container my-4'>
+    <div class="card" style="background:#EFE7E7">
+        <h5 class="card-header" style="text-align:center">{{ c.status_title }}</h5>
+        <div class="card-body">
+          <p class="card-text">{{c.status_content}}</p>
+        </div>
+        <div class="card-body">
+          <p class="card-text">{{c.updated_datetime}}</p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+</div>
+   
+
+
+<script>
+
+    let Buttons = document.querySelectorAll(".selectSection button");
+  
+  // loop through the buttons using for..of 
+  for (let button of Buttons) {
+  
+  // listen for a click event 
+  button.addEventListener('click', (e) => {
+  // Store the event target in a const
+  const et = e.target;
+  
+  // select active class
+  const active = document.querySelector(".active");
+  /* when a button is clicked, remove the active class 
+  from the button that has it */
+  if (active) {
+    active.classList.remove("active");
+  }
+  
+  // Add active class to the clicked element
+  et.classList.add("active");
+  
+  // select all classes with the name content
+  let allContent = document.querySelectorAll('.content');
+  
+  // loop through all content classes
+  for (let content of allContent) {
+  
+    /* display the content if the value in the data attribute of the button and content are the same */
+    if(content.getAttribute('data-number') === button.getAttribute('data-number')) {
+      content.style.display = "block";
+    }
+  
+    // if it's not equal then hide it.
+    else {
+        content.style.display = "none";
+      }
+    }
+  });
+  }
+  
+  </script>  
+
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
+{% block js %}{% endblock%}
+     {% endblock content %}
+

@@ -1,0 +1,212 @@
+{% extends "project1/base.html" %}
+{% load static %}
+
+{% block styles %}
+#id_criminal_firstname, #id_criminal_lastname{
+    width: 100%;
+    
+}
+
+.filtercon
+{
+  width:70%;
+  margin-bottom: 20px;
+  {% comment %} padding:20px; {% endcomment %}
+
+}
+table.test td {
+
+  padding: 12px 12px 12px 12px;
+}
+.filtertable
+{
+  margin:auto;
+}
+.filtercss
+{
+  
+  padding-right:40px;
+  width:65%;
+}
+
+{% endblock %}
+{% block title %}
+Criminal Record
+{% endblock title %}
+{% block content %}
+<div class="bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark  p-3" style="background-color:rgba(0,0,0,0.2)">
+
+
+        <a class="navbar-brand" mx-3 px-4" href="#">Einvestigate</a>
+     
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+  
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+      <ul class="navbar-nav   mt-2 mt-lg-0 ml-auto ">
+      <li class="nav-item ">
+        <a class="nav-link  mx-3 px-4" href="{% url 'home' %}">Home</a>
+      </li>
+      {% if user.profile.role == 2 %}
+      <li class="nav-item ">
+        <a class="nav-link  mx-3 px-4" href="{% url 'dspprofile' %}">Profile</a>
+      </li>
+      {% endif %}
+      {% if user.profile.role == 3 %}
+      <li class="nav-item ">
+        <a class="nav-link  mx-3 px-4" href="{% url 'ioprofile' %}">Profile</a>
+      </li>
+      {% endif %}
+      
+      
+      <li class="nav-item">
+        <a class="nav-link active mx-3" href="{% url 'crimerecord' %}">View Criminal Records</a>
+      </li>
+      
+      <li class="nav-item mx-3">
+    {% if user.is_authenticated %}
+ 
+<a  class="nav-link" href="{% url 'logout' %}">Logout</a>
+{% else %}
+  
+  <a class="nav-link" href="{% url 'login' %}">Login</a>
+{% endif %}
+</li>
+     
+    </ul>
+       
+    
+    </div>
+  </nav>
+   </div> 
+   <br>
+  <br>
+  <div class="primary">
+  <div class="container filtercon">
+    <div class="row">
+      <div class="col-xs-6 filtercss">
+  
+        <div class="filter-menu">
+          <form method="get" id="formid">
+            <div class="panel panel-default">
+      
+
+              <div class="panel-body">
+                <div class="panel-group" id="filter-menu" role="tablist" aria-multiselectable="true">
+                  <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne" style="text-align:center;">
+                    
+                      <a class="panel-title accordion-toggle" role="button" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <button class="btn btn-dark " style="width:100%;margin-bottom:15px;">
+                        FILTER BY
+                         </button>
+                      </a><!-- /.panel-title -->
+                     
+                    </div><!-- /.panel-heading -->
+                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                      <div class="panel-body">
+                      <table class="filtertable">
+                      <tr>
+                        <td>{{myFilter.form.criminal_firstname.label_tag}}</td>
+                        <td colspan="2">{{myFilter.form.criminal_firstname}}</td>
+                        </tr>
+                        <tr>
+                        <td>{{myFilter.form.criminal_lastname.label_tag}}</td>
+                        <td colspan="2">{{myFilter.form.criminal_lastname}}</td>
+                         </tr>
+                        <tr>
+                       <td>{{myFilter.form.gender.label_tag}}</td>
+                       <td colspan="2">{{myFilter.form.gender}}</td>
+                        </tr>
+                       <tr>
+                        <td>{{myFilter.form.crimcase__criminal_id.label_tag}}</td>
+                        <td colspan="2">{{myFilter.form.crimcase__criminal_id}}</td>
+                         </tr>
+                        <tr>
+                        <td>{{myFilter.form.crimcase__case_id.label_tag}}</td>
+                        <td colspan="2">{{myFilter.form.crimcase__case_id}}</td>
+                         </tr>
+                        <tr>
+                        <td>{{myFilter.form.crime_district.label_tag}}</td>
+                        <td colspan="2">{{myFilter.form.crime_district}}</td>
+                         </tr>
+                        <tr>
+                        <td>{{myFilter.form.case_category.label_tag}}</td>
+                        <td colspan="2">{{myFilter.form.case_category}}</td>
+                         </tr>
+                      </table>
+                      </div><!-- /.panel-body -->
+                    </div><!-- /.panel-collapse -->
+                  </div><!-- /.panel -->
+
+                  
+                  
+                </div><!-- /.panel-group -->
+              </div><!-- /.panel-body -->
+             
+            </div><!-- /.panel -->
+            
+          
+        </div><!-- /.filter-menu --> 
+    </div>  
+        <div class="col-xs-3" style="margin-right:40px;"><button class="btn btn-dark " type="submit">APPLY FILTER</button></div>
+        
+        </form>   
+        <div class="col-xs-3">
+         
+        <a  href="{% url 'crimerecord' %}">
+        <button class="btn btn-dark ">
+        CLEAR ALL
+        </button>
+        </a>
+        
+        </div>  
+      </div> <!-- row -->
+
+      
+      
+      <!-- -------------------------------------------------- -->
+      
+      
+    
+  </div><!-- /.container -->
+</div><!-- /.primary -->
+
+   <table class="table table-bordered table-hover ">
+    <thead class="thead-dark">
+    <tr class="text-center">
+    <th>Criminal ID</th>
+    <th>First name</th>
+    <th>Last name</th>
+    <th>Gender</th>
+    <th>Birth date</th>
+    <th>No of Crimes</th>
+    
+  </tr>
+    </thead>
+    <tbody>   
+
+   
+   {% for cr in  cr %}
+  
+   <tr class="clickable text-center" onclick="window.location='{% url 'CriminalDetails' cr.criminal_id %}'">
+       <td> {{ cr.criminal_id }} </td>
+       <td> {{ cr.criminal_firstname }} </td>
+       <td> {{ cr.criminal_lastname }} </td>
+       <td> {{ cr.gender}} </td>
+       <td> {{ cr.birthdate}} </td>
+       <td> {{ cr.no_of_crimes }} </td>
+      
+       
+    </tr>
+  {% endfor %}
+  </tbody>
+   </table>
+   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    {% block js %}{% endblock%}
+{% endblock content %}

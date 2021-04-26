@@ -1,0 +1,200 @@
+{% extends "addcases/base.html" %}
+
+{% block title %}
+Add Case
+{% endblock title %}
+
+{% block body %}
+<div class="bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark  p-3" style="background-color:rgba(0,0,0,0.2)">
+
+
+        <a class="navbar-brand" mx-3 px-4" href="#">Einvestigate</a>
+     
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+  
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+      <ul class="navbar-nav   mt-2 mt-lg-0 ml-auto ">
+      <li class="nav-item ">
+        <a class="nav-link  mx-3 px-4" href="{% url 'home' %}">Home</a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link  mx-3 px-4" href="{% url 'dspprofile' %}">Profile</a>
+      </li>
+      
+      <li class="nav-item ">
+        <a class="nav-link  active mx-3"  href="{% url 'Addcase' %}">Add Case</a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link mx-3" href="{% url 'crimerecord' %}">View Criminal Records</a>
+      </li>
+      
+      <li class="nav-item mx-3">
+    {% if user.is_authenticated %}
+ 
+<a  class="nav-link" href="{% url 'logout' %}">Logout</a>
+{% else %}
+  
+  <a class="nav-link" href="{% url 'login' %}">Login</a>
+{% endif %}
+</li>
+     
+    </ul>
+       
+    
+    </div>
+  </nav>
+   </div> 
+
+<div class="container">
+<div class="card card-outline-secondary border-danger">
+    <div class="card-header">
+      <h3 class="mb-0">ADD CASE DETAILS</h3>
+    </div>
+    <div class="card-body">
+      <form autocomplete="off" class="form" role="form" action="" method="POST">
+        {% csrf_token %}
+        <div class="form-group row">
+          <label class="col-lg-3 col-form-label form-control-label">Category</label>
+          <div class="col-lg-9">
+            <select class="form-control" name="case_category" size="0">
+              <option value="Robbery">
+                Robbery
+              </option>
+              <option value="Cyber-crime">
+                Cyber-crime
+              </option>
+              <option value="Domestic violence">
+                Domestic violence
+              </option>
+              <option value="Sexual Assault">
+                Sexual Assault
+              </option>
+              <option value="Child Abuse">
+                Child Abuse
+              </option>
+            
+              <option value="Terrorism">
+                Terrorism
+              </option>
+              <option value="Violent Crime">
+                Violent Crime
+              </option>
+              <option value="Corruption">
+                Corruption
+              </option>
+              <option value="Poaching">
+                Poaching
+              </option>
+              <option value="none" selected disabled hidden>
+                Select Category of Crime
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-lg-3 col-form-label form-control-label">Case Description: </label>
+          <div class="col-lg-9">
+            <input class="form-control" type="text" name="case_description">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-lg-3 col-form-label form-control-label">Crime Location: </label>
+          <div class="col-lg-9">
+            <input class="form-control" type="text" name="crime_location">
+          </div>
+        </div>
+         <div class="form-group row">
+          <label class="col-lg-3 col-form-label form-control-label">Crime district: </label>
+          <div class="col-lg-9">
+            <select class="form-control" name="crime_district" size="0">
+            {%for p in DISTRICT_CHOICES%}
+              <option value={{ p }}>
+                {{ p }}
+              </option>
+              {%endfor%}
+          </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-lg-3 col-form-label form-control-label">Crime Date: </label>
+          <div class="col-lg-9">
+            <input class="form-control" type="date" name="crime_date">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-lg-3 col-form-label form-control-label">Complainant Name: </label>
+          <div class="col-lg-9">
+            <input class="form-control" type="text" name="complainant_name">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-lg-3 col-form-label form-control-label">Complainant Contact: </label>
+          <div class="col-lg-9">
+            <input class="form-control" type="number" name="complainant_contact">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-lg-3 col-form-label form-control-label">Complainant Email: </label>
+          <div class="col-lg-9">
+            <input class="form-control" type="email" name="complainant_email">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-lg-3 col-form-label form-control-label">Accused Name: </label>
+          <div class="col-lg-9">
+            <input class="form-control" type="text" name="accused_name">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-lg-3 col-form-label form-control-label">Accused Contact: </label>
+          <div class="col-lg-9">
+            <input class="form-control" type="number" name="accused_contact">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-lg-3 col-form-label form-control-label">Accused Email: </label>
+          <div class="col-lg-9">
+            <input class="form-control" type="email" name="accused_email">
+          </div>
+        </div>
+
+        <h6>ASSIGN INVESTIGATING OFFICER:</h6>
+        <br>
+        <div class="form-group row">
+          <label class="col-lg-3 col-form-label form-control-label">Investigating Officer username: </label>
+          <div class="col-lg-9">
+            <input class="form-control" type="text" name="case_io_username">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-lg-3 col-form-label form-control-label">Investigating Officer id: </label>
+          <div class="col-lg-9">
+            <input class="form-control" type="text" name="case_io_id">
+          </div>
+        </div>
+      
+
+        
+        
+        
+        
+        
+        <div class="form-group row">
+          <label class="col-lg-3 col-form-label form-control-label"></label>
+          <div class="col-lg-9">
+            
+                                  <input class=" btn addcase_btn" type="submit" value="Add Case">
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div><!-- /form user info -->
+<!-- </div>
+</div> -->
+{% endblock body %}

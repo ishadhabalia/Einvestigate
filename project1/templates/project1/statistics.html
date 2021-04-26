@@ -1,0 +1,136 @@
+{% extends "project1/base.html" %}
+{% load static %}
+  
+{% block content %}
+<div class="bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark  p-3" style="background-color:rgba(0,0,0,0.2)">
+
+
+        <a class="navbar-brand" mx-3 px-4" href="#">Einvestigate</a>
+     
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+  
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+      <ul class="navbar-nav   mt-2 mt-lg-0 ml-auto ">
+      <li class="nav-item ">
+        <a class="nav-link  mx-3 px-4" href="{% url 'home' %}">Home</a>
+      </li>
+       <li class="nav-item mx-4">
+    {% if user.is_authenticated %}
+    {%if user.profile.role|divisibleby:"2"%}
+  <a  class="nav-link" href="{% url 'dspprofile' %}">Profile</a>
+  {%elif user.profile.role|divisibleby:"3"%}
+  <a  class="nav-link" href="{% url 'ioprofile' %}">Profile</a>
+  {% endif %}
+{% else %}
+  
+{% endif %}
+</li>
+      <li class="nav-item ">
+        <a class="nav-link mx-4" href="{% url 'About_Us' %}">About Us</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active mx-4" href="{% url 'Statistics' %}">Statistics</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link mx-4" href="{% url 'Contact_Us' %}">Contact Us</a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link  mx-3 px-4" href="{% url 'TrackCase' %}">Track Case</a>
+      </li>
+      
+      <li class="nav-item mx-3">
+    {% if user.is_authenticated %}
+ 
+ <a  class="nav-link" href="{% url 'logout' %}">Logout</a>
+{% else %}
+  
+  <a class="nav-link" href="{% url 'login' %}">Login</a>
+{% endif %}
+</li>
+     
+    </ul>
+       
+      
+    </div>
+  </nav> </div>
+{% block scripts %}
+<script>
+  $(document).ready(function(){
+var ctx = document.getElementById('myChart').getContext('2d');
+  var myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+          labels: ['Robbery','Cyber Crime','Domestic Violence','Sexual Assault','Child Abuse','Terrorism','Violent Crime','Corruption','Poaching'],
+          datasets: [{
+              label: 'No of Cases',
+              data: [{{rob}},{{cyber_crime}},{{dom_vio}},{{sex_asst}},{{child_abuse}},{{terrorism}},{{violent_crime}},{{corruption}},{{poaching}}],
+              backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(104, 292, 399, 0.2)',
+                  'rgba(25, 26, 86, 0.2)',
+                  'rgba(75, 122, 100, 0.2)',
+                  'rgba(153, 102, 255, 0.2)',
+                  'rgba(255, 159, 64, 0.2)',
+                  'rgba(339, 146, 349, 0.2)',
+                  'rgba(10, 300, 25, 0.2)',
+                  'rgba(68, 138, 12, 0.2)',
+              ],
+              borderColor: [
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(14, 392, 299, 1)',
+                  'rgba(25, 26, 86, 1)',
+                  'rgba(75, 122, 100, 1)',
+                  'rgba(153, 102, 255, 1)',
+                  'rgba(255, 159, 64, 1)',
+                  'rgba(339, 146, 349, 1)',
+                  'rgba(10, 300, 25, 1)',
+                  'rgba(68, 138, 12, 1)',
+              ],
+              borderWidth: 1
+          }]
+      },
+      options: {
+          scales: {
+            yAxes: [{
+            	ticks: {
+                beginAtZero: true,
+                // min: 0,
+                // max: 10,
+              	// stepSize: 1
+                precision: 0,
+            	}
+        	}]
+        }
+      }
+  });
+});
+</script>
+{% endblock scripts %}
+
+<canvas id="myChart" width="400" height="100" style="margin-top: 80px; "></canvas>
+
+  <!-- <div>
+  <p>
+    {% for o in obj %}
+    <div><h1>{{ o.case_category}}</h1></div>
+    <div><h1>{{ o.crime_location}}</h1></div>
+    {% endfor %}
+  </p> -->
+  <!-- <p>{{obj2}}</p> -->
+<!-- </div> -->
+  <!-- <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
+    <!-- semantic UI -->
+    <!-- <link rel="stylesheet" type='text/css' href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/semantic.min.css"> -->
+    <!--Chart js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" integrity="sha256-Uv9BNBucvCPipKQ2NS9wYpJmi8DTOEfTA/nH2aoJALw=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E=" crossorigin="anonymous" />
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <!-- {% block js %}{% endblock%} -->
+ 
+  {% endblock content %}

@@ -1,0 +1,350 @@
+{% extends "project1/base.html" %}
+
+{% load static %}
+{% block styles %}
+
+    .content:not(:first-child) {
+    display: none;
+    }
+    h3{
+  text-align:center;
+  color:#D65959;
+}
+.editbtn {
+			width: 30%;
+			padding:10px;
+			margin-top:30px;
+			background: #D65959!important;
+			color: white !important;
+      margin-left:20%;
+    
+		}
+    .container
+    {
+       margin-top:20px;
+       width:80%;
+       padding-left:50px;
+    }
+{% endblock %} 
+{% block title %}
+Investigation Edit
+{% endblock title %}
+  
+{% block content %}
+<div class="bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark  p-3" style="background-color:rgba(0,0,0,0.2)">
+
+
+        <a class="navbar-brand" mx-3 px-4" href="#">Einvestigate</a>
+     
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+  
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+      <ul class="navbar-nav   mt-2 mt-lg-0 ml-auto ">
+      <li class="nav-item ">
+        <a class="nav-link  mx-3 px-4" href="{% url 'home' %}">Home</a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link mx-3 px-4" href="{% url 'ioprofile' %}">Profile</a>
+      </li>
+      
+      
+      
+      <li class="nav-item">
+        <a class="nav-link mx-3" href="{% url 'crimerecord' %}">View Criminal Records</a>
+      </li>
+      
+      <li class="nav-item mx-3">
+    {% if user.is_authenticated %}
+ 
+<a  class="nav-link" href="{% url 'logout' %}">Logout</a>
+{% else %}
+  
+  <a class="nav-link" href="{% url 'login' %}">Login</a>
+{% endif %}
+</li>
+     
+    </ul>
+       
+    
+    </div>
+  </nav>
+   </div> 
+<div class="container mt-3">
+  <h3>CASE: {{ case }}</h3>
+</div>
+
+
+<!-- options for adding text/file/suspects/leads gathered -->
+<div class="container py-2 selectSection">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" >Add</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+            <button type="button" data-number="1" class="btn active" id="clicked">Text Evidence</button>
+            <script>
+              window.onload = function(){
+              document.getElementById('clicked').click();
+              }
+            </script>
+        </li>
+        <li class="nav-item">
+          <button type="button" data-number="2" class="btn">Evidence Files</button>
+        </li>
+        <li class="nav-item">
+          <button type="button" data-number="3" class="btn">Suspects</button>
+        </li>
+        <li class="nav-item">
+          <button type="button" data-number="4" class="btn">Leads Gathered</button>
+        </li>
+        <li class="nav-item">
+          <button type="button" data-number="5" class="btn">Update Case Status</button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+
+<!-- Make edits -->
+<div class="container py-5 contentSection">
+  
+  <!-- Form for text evidence -->
+  <div class="card card-outline-secondary content " data-number="1" style="margin-top:-40px">
+      <div class="card-header">
+        <h3 class="mb-0">Add Text</h3>
+      </div>
+      <div class="card-body">
+        <form autocomplete="off" class="form" role="form" action="" method="POST">
+          {% csrf_token %}
+          <div class="form-group row">
+            <label class="col-lg-3 col-form-label form-control-label">Title: </label>
+            <div class="col-lg-9">
+              <input class="form-control" type="text" name="t_edit_title">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-lg-3 col-form-label form-control-label">Content: </label>
+            <div class="col-lg-9">
+              <input class="form-control" type="text" name="t_edit_content">
+            </div>
+          </div>
+          
+          
+          <div class="form-group row">
+            <label class="col-lg-3 col-form-label form-control-label"></label>
+            <div class="col-lg-9">
+              
+                                    <input class="btn editbtn" type="submit" value="Add evidence">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Form for Evidence Files -->
+    <div class="card card-outline-secondary content" data-number="2">
+      <div class="card-header">
+        <h3 class="mb-0">Add Files</h3>
+      </div>
+      <div class="card-body">
+        <form autocomplete="off" class="form" role="form" action="" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="form-group row">
+            <label class="col-lg-3 col-form-label form-control-label">Title: </label>
+            <div class="col-lg-9">
+              <input class="form-control" type="text" name="f_edit_title">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-lg-3 col-form-label form-control-label">Attach File <br>(Image / Audio / Video / Forensic or Medical Report ) </label>
+            <div class="col-lg-9"> 
+              <input class="form-control" type="file" name="f_file_path">
+            </div>
+          </div>
+          
+          
+          <div class="form-group row">
+            <label class="col-lg-3 col-form-label form-control-label"></label>
+            <div class="col-lg-9">
+              
+                                    <input class="btn editbtn" type="submit" value="Upload File">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+
+    <!-- Form for suspects -->
+    <div class="card card-outline-secondary content" data-number="3">
+      <div class="card-header">
+        <h3 class="mb-0">Add Suspects</h3>
+      </div>
+      <div class="card-body">
+        <form autocomplete="off" class="form" role="form" action="" method="POST">
+          {% csrf_token %}
+          <div class="form-group row">
+            <label class="col-lg-3 col-form-label form-control-label">Suspect Name: </label>
+            <div class="col-lg-9">
+              <input class="form-control" type="text" name="suspect_name">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-lg-3 col-form-label form-control-label">Suspect Contact: </label>
+            <div class="col-lg-9">
+              <input class="form-control" type="text" name="suspect_contact">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-lg-3 col-form-label form-control-label">Suspect Address: </label>
+            <div class="col-lg-9">
+              <input class="form-control" type="text" name="suspect_address">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-lg-3 col-form-label form-control-label">Why suspect ? </label>
+            <div class="col-lg-9">
+              <input class="form-control" type="text" name="suspect_reason">
+            </div>
+          </div>
+          
+          
+          <div class="form-group row">
+            <label class="col-lg-3 col-form-label form-control-label"></label>
+            <div class="col-lg-9">
+              
+                                    <input class="btn editbtn" type="submit" value="Add suspect">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Form for Leads -->
+    <div class="card card-outline-secondary content " data-number="4">
+      <div class="card-header">
+        <h3 class="mb-0">Add Leads Gathered</h3>
+      </div>
+      <div class="card-body">
+        <form autocomplete="off" class="form" role="form" action="" method="POST">
+          {% csrf_token %}
+          <div class="form-group row">
+            <label class="col-lg-3 col-form-label form-control-label">Title: </label>
+            <div class="col-lg-9">
+              <input class="form-control" type="text" name="l_edit_title">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-lg-3 col-form-label form-control-label">Content: </label>
+            <div class="col-lg-9">
+              <input class="form-control" type="text" name="l_edit_content">
+            </div>
+          </div>
+          
+          
+          <div class="form-group row">
+            <label class="col-lg-3 col-form-label form-control-label"></label>
+            <div class="col-lg-9">
+              
+                                    <input class="btn editbtn" type="submit" value="Add Lead">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+
+    <!-- Form for Updating case status -->
+    <div class="card card-outline-secondary content " data-number="5">
+      <div class="card-header">
+        <h3 class="mb-0">Update Case Status</h3>
+      </div>
+      <div class="card-body">
+        <form autocomplete="off" class="form" role="form" action="" method="POST">
+          {% csrf_token %}
+          <div class="form-group row">
+            <label class="col-lg-3 col-form-label form-control-label">Title: </label>
+            <div class="col-lg-9">
+              <input class="form-control" type="text" name="status_title">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-lg-3 col-form-label form-control-label">Status Description: </label>
+            <div class="col-lg-9">
+              <input class="form-control" type="text" name="status_content">
+            </div>
+          </div>
+          
+          
+          <div class="form-group row">
+            <label class="col-lg-3 col-form-label form-control-label"></label>
+            <div class="col-lg-9">
+              
+                  <input class="btn editbtn" type="submit" value="Update">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+
+
+  <script>
+
+    let Buttons = document.querySelectorAll(".selectSection button");
+  
+  // loop through the buttons using for..of 
+  for (let button of Buttons) {
+  
+  // listen for a click event 
+  button.addEventListener('click', (e) => {
+  // Store the event target in a const
+  const et = e.target;
+  
+  // select active class
+  const active = document.querySelector(".active");
+  /* when a button is clicked, remove the active class 
+  from the button that has it */
+  if (active) {
+    active.classList.remove("active");
+  }
+  
+  // Add active class to the clicked element
+  et.classList.add("active");
+  
+  // select all classes with the name content
+  let allContent = document.querySelectorAll('.content');
+  
+  // loop through all content classes
+  for (let content of allContent) {
+  
+    /* display the content if the value in the data attribute of the button and content are the same */
+    if(content.getAttribute('data-number') === button.getAttribute('data-number')) {
+      content.style.display = "block";
+    }
+  
+    // if it's not equal then hide it.
+    else {
+        content.style.display = "none";
+      }
+    }
+  });
+  }
+  </script>
+
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+  {% block js %}{% endblock%}
+     {% endblock content %}
+

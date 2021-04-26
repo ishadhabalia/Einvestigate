@@ -1,0 +1,121 @@
+{% extends "project1/base.html" %}
+{% load static %}
+
+{% block styles %}
+
+{% endblock %}
+{% block title %}
+Criminal Record
+{% endblock title %}
+{% block content %}
+<div class="bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark  p-3" style="background-color:rgba(0,0,0,0.2)">
+
+
+        <a class="navbar-brand" mx-3 px-4" href="#">Einvestigate</a>
+     
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+  
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+      <ul class="navbar-nav   mt-2 mt-lg-0 ml-auto ">
+      <li class="nav-item ">
+        <a class="nav-link  mx-3 px-4" href="{% url 'home' %}">Home</a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link  mx-3 px-4" href="{% url 'dspprofile' %}">Profile</a>
+      </li>
+      
+      <li class="nav-item ">
+        <a class="nav-link mx-3" href="{% url 'Addcase' %}">Add Case</a>
+      </li>
+     
+      <li class="nav-item">
+        <a class="nav-link  mx-3" href="{% url 'crimerecord' %}">View Criminal Records</a>
+      </li>
+      
+      <li class="nav-item mx-3">
+    {% if user.is_authenticated %}
+ 
+<a  class="nav-link" href="{% url 'logout' %}">Logout</a>
+{% else %}
+  
+  <a class="nav-link" href="{% url 'login' %}">Login</a>
+{% endif %}
+</li>
+     
+    </ul>
+       
+    
+    </div>
+  </nav>
+   </div> 
+   
+   <table class="table table-bordered table-hover ">
+   <thead class="thead-dark">
+    <tr class="text-center" >
+    <th colspan="2">PERSONAL DETAILS</th>
+   </tr>
+    </thead>
+   <tbody>   
+   <tr> 
+   <td>CRIMINAL ID: {{ cr.criminal_id }}</td>
+   <td>NO. OF CRIMES: {{ cr.no_of_crimes }}</td></tr>
+   <tr>
+   <tr>
+   <td >FIRST NAME: {{ cr.criminal_firstname }}</td>
+   <td>LAST NAME: {{ cr.criminal_lastname }}</td>
+   
+   </tr>
+   <tr>
+   <td >BIRTHDATE: {{ cr.birthdate }}</td>
+   <td>GENDER: {{ cr.gender }}</td>
+   
+   </tr>
+
+   </tbody>
+   </table>
+   
+   {%for c in cc%}
+   <table class="table table-bordered table-hover ">
+   <thead class="thead-dark">
+    <tr class="text-center" >
+    <th colspan="2">CASE ID: {{ c.case_id.case_id }}</th>
+   </tr>
+    </thead>
+   <tbody>   
+   <tr> 
+   <td>CASE DESCRIPTION : {{ c.crime_description }}</td>
+   </tr>
+   <tr>
+   <tr>
+   <td >CRIME CATEGORY: {{ c.case_id.case_category }}</td>
+   <td>CRIME DATE: {{ c.case_id.crime_date }}</td>
+   
+   </tr>
+   <tr>
+   <td >CRIME LOCATION: {{ c.case_id.crime_location }}</td>
+   <td>CRIME DISTRICT: {{ c.case_id.crime_district }}</td>
+   
+   </tr>
+   <tr>
+   <td colspan="2">CRIME PUNSISHMENT: {{ c.crime_punishment }}</td>
+   </tr>
+   <tr>
+   <td colspan="2">SENTENCE STATUS: {{ c.sentence_status }}</td>
+   </tr>
+   <tr>
+   <td >IO NAME: {{ c.case_id.case_io.user.first_name }} {{ c.case_id.case_io.user.last_name }}</td>
+   <td>IO EMAIL: {{ c.case_id.case_io.user.email }}</td>
+   
+   </tr>
+   </tbody>
+   </table>
+{%endfor%}
+   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    {% block js %}{% endblock%}
+{% endblock content %}
