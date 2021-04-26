@@ -1,12 +1,12 @@
 # Einvestigate
-Einestigate is a Police investigation website which aims to help the police department in investigating cases by providing a system supporting features for searching and maintaining case details. This project aims to assist the investigating officer with case details and criminal records. The complainant and accused can get restricted access to the status of the case. The system can also be used to analyse crime rate and number of cases solved.
+Einvestigate is a Police investigation website which aims to help the police department in investigating cases by providing a system supporting features for searching and maintaining case details. This project aims to assist the investigating officer with case details and criminal records. The complainant and accused can get restricted access to the status of the case. The system can also be used to analyse crime rate and number of cases solved.
 
 ## Tech-Stack
 * HTML
 * CSS
 * Bootstrap
 * Django
-* Javascript
+* JavaScript
 ## Installation
 1. install virtual environment
  ```
@@ -40,5 +40,3 @@ python manage.py runserver
 * View Criminal Records to find suspects.
 * View crime statistics
 * View other case details with the help of criminal records
-
-
