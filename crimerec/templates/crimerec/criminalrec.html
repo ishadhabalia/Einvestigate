@@ -28,14 +28,17 @@ table.test td {
   padding-right:40px;
   width:65%;
 }
-
+.btn{
+  background-color:#5e6ab0;
+  color:white;
+}
 {% endblock %}
 {% block title %}
 Criminal Record
 {% endblock title %}
 {% block content %}
-<div class="bg-dark">
-<nav class="navbar navbar-expand-lg navbar-dark  p-3" style="background-color:rgba(0,0,0,0.2)">
+<div>
+<nav class="navbar navbar-expand-lg navbar-dark  p-3">
 
 
         <a class="navbar-brand" mx-3 px-4" href="#">Einvestigate</a>
@@ -100,7 +103,7 @@ Criminal Record
                     <div class="panel-heading" role="tab" id="headingOne" style="text-align:center;">
                     
                       <a class="panel-title accordion-toggle" role="button" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        <button class="btn btn-dark " style="width:100%;margin-bottom:15px;">
+                        <button class="btn" style="width:100%;margin-bottom:15px;">
                         FILTER BY
                          </button>
                       </a><!-- /.panel-title -->
@@ -152,13 +155,13 @@ Criminal Record
           
         </div><!-- /.filter-menu --> 
     </div>  
-        <div class="col-xs-3" style="margin-right:40px;"><button class="btn btn-dark " type="submit">APPLY FILTER</button></div>
+        <div class="col-xs-3" style="margin-right:40px;"><button class="btn" type="submit">APPLY FILTER</button></div>
         
         </form>   
         <div class="col-xs-3">
          
         <a  href="{% url 'crimerecord' %}">
-        <button class="btn btn-dark ">
+        <button class="btn ">
         CLEAR ALL
         </button>
         </a>
@@ -176,7 +179,7 @@ Criminal Record
 </div><!-- /.primary -->
 
    <table class="table table-bordered table-hover ">
-    <thead class="thead-dark">
+    <thead>
     <tr class="text-center">
     <th>Criminal ID</th>
     <th>First name</th>
