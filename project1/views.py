@@ -1,7 +1,8 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from addcases.models import Case
-from .models import CaseStatus
+from project1.forms import OnlineComplaintForm
+from .models import CaseStatus, OnlineComplaint
 from django.contrib.auth.models import User
 
 def home(request):
@@ -101,3 +102,16 @@ def contactus(request):
      
 def aboutus(request):
      return render(request,'project1/aboutus.html')
+
+def onlinecomplaint(request):
+     flag=0
+     form=OnlineComplaintForm
+     if request.method=='POST':
+          form=OnlineComplaintForm(request.POST)
+          if form.is_valid:
+               form.save()
+               flag=1
+          else:
+               flag=2
+     context={'form':form, 'flag':flag}
+     return render(request,'project1/onlinecomplaint.html',context)

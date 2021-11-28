@@ -8,4 +8,5 @@ path('casenotfound/', views.casenotfound, name = 'CaseNotFound'),
 path('statistics/', views.showstats, name = 'Statistics'),
 path('contactus/', views.contactus, name = 'Contact_Us'),
 path('aboutus/', views.aboutus, name = 'About_Us'),
+path('complaint/', views.onlinecomplaint, name = 'Online_Complaint'),
 ]
