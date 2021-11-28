@@ -1,6 +1,9 @@
 {% extends "project1/base.html" %}
 {% load static %}
 {% block styles %}
+body{
+  background-color: #f7f7f7;
+}
   
     .content:not(:first-child) {
     display: none;
@@ -16,9 +19,21 @@ h3{
 .container
     {
        margin-top:20px;
-       width:75%;
-       padding-left:50px;
+       width:83%;
+       <!-- padding-left:50px; -->
     }
+.row > div {
+      flex: 1;
+      border: 1px solid grey;
+}
+.vertical-align {
+  display: flex;
+  align-items: center;
+}
+.col-lg-6{
+  padding: 0.5vw;
+}
+
 
   {% endblock %} 
   {% block title %}
@@ -121,59 +136,64 @@ Investigation Detail
     </ul>
     </div>
   </nav> {% endcomment %}
-<div class='container my-3' style="width:75%;padding-left:30px; padding-right:30px; padding-top:20px">
+<div class='container my-3' style="width:75%;padding-left:30px; padding-right:30px; padding-top:20px;background-color: #f7f7f7;">
 
 <h3>CASE DETAILS:</h3>
 <div class="detail border-primary" style="margin-top:10px">
-<div class="card d-flex">
+<div class="d-flex" style="background-color: #f7f7f7;">
 <div style="text-align:center" class="card-body ">
-<h5 style="text-align:center;color:#D65959" class="card-title ">Case ID: {{ case_object.case_id  }}</h5>
-<div class="container">
-  <p> {{ case_object.case_description }}</p>
+<h5 style="text-align:center;color:#5e6ab0" class="card-title ">Case ID: {{ case_object.case_id  }}</h5>
+<div class="container text-left" style="padding: 0 5vw;background-color: #f7f7f7;">
+  {{ case_object.case_description }}
 </div>
 
 <hr>
+
+
 <p class="card-text "  >
+  <div class="container" style="background-color: #f7f7f7;">
 <div class="row no-gutters">
-  <div class="col-lg-6" >
-    <p>Case Category: {{ case_object.case_category }}</p>
+  <div class="col-lg-6 vertical-align text-left" >
+    Case Category: {{ case_object.case_category }}
   </div>
-  <div class="col-lg-6">
-    <p>Crime Location: {{ case_object.crime_location }}</p>
+  <div class="col-lg-6 vertical-align text-left">
+    Crime Location: {{ case_object.crime_location }}
   </div>
 </div>
 <div class="row no-gutters">
-  <div class="col-lg-6">
-    <p>Crime Date: {{ case_object.crime_date }}</p>
+  <div class="col-lg-6 vertical-align text-left">
+    Crime Date: {{ case_object.crime_date }}
   </div>
-  <div class="col-lg-6">
-    <p>Complainant Name: {{ case_object.complainant_name }}</p>
-  </div>
-</div>
-<div class="row no-gutters">
-  <div class="col-lg-6">
-    <p>Complainant Contact: {{ case_object.complainant_contact }}</p>
-  </div>
-  <div class="col-lg-6">
-    <p>Complainant Email: {{ case_object.complainant_email }}</p>
+  <div class="col-lg-6 vertical-align text-left">
+    Complainant Name: {{ case_object.complainant_name }}
   </div>
 </div>
 <div class="row no-gutters">
-  <div class="col-lg-6">
-    <p>Accused Name: {{ case_object.accused_name }}</p>
+  <div class="col-lg-6 vertical-align text-left">
+    Complainant Contact: {{ case_object.complainant_contact }}
   </div>
-  <div class="col-lg-6 ">
-    <p>Accused Contact: {{ case_object.accused_contact }}</p>
+  <div class="col-lg-6 vertical-align text-left">
+    Complainant Email: {{ case_object.complainant_email }}
   </div>
 </div>
 <div class="row no-gutters">
-  <div class="col-lg-6">
-    <p>Accused Email: {{ case_object.accused_email }}</p>
+  <div class="col-lg-6 vertical-align text-left ">
+    Accused Name: {{ case_object.accused_name }}
   </div>
-  <div class="col-lg-6">
-    <p>Case Added on: {{ case_object.case_added_date }}</p>
+  <div class="col-lg-6 vertical-align text-left">
+    Accused Contact: {{ case_object.accused_contact }}
+  </div>
+</div>
+<div class="row no-gutters">
+  <div class="col-lg-6 vertical-align text-left">
+    Accused Email: {{ case_object.accused_email }}
+  </div>
+  <div class="col-lg-6 vertical-align text-left">
+    Case Added on: {{ case_object.case_added_date }}
   </div>
   </div>
+  <br>
+</div>
   </div>
 </div>
 </div>
@@ -183,32 +203,32 @@ Investigation Detail
 
 <!-- Options for viewing -->
 <div class="container py-2 selectSection ">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" >View</a>
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #E8E8E8;">
+    <a class="navbar-brand" style="color: black" >View</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse "  id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-            <button type="button" data-number="1" class="btn active" id="clicked">Text Evidence</button>
+            <button style="color: #5e6ab0" type="button" data-number="1" class="btn active" id="clicked">Text Evidence</button>
             <script>
               window.onload = function(){
               document.getElementById('clicked').click();
               }
             </script>
         </li>
-        <li class="nav-item">
-          <button type="button" data-number="2" class="btn">Evidence Files</button>
+        <li class="nav-item" >
+          <button style="color: #5e6ab0" type="button" data-number="2" class="btn">Evidence Files</button>
         </li>
         <li class="nav-item">
-          <button type="button" data-number="3" class="btn">Suspects</button>
+          <button style="color: #5e6ab0" type="button" data-number="3" class="btn">Suspects</button>
         </li>
         <li class="nav-item">
-          <button type="button" data-number="4" class="btn">Leads Gathered</button>
+          <button style="color: #5e6ab0" type="button" data-number="4" class="btn">Leads Gathered</button>
         </li>
         <li class="nav-item">
-          <button type="button" data-number="5" class="btn">View Case Status History</button>
+          <button style="color: #5e6ab0" type="button" data-number="5" class="btn">View Case Status History</button>
         </li>
       </ul>
     </div>
@@ -225,7 +245,7 @@ Investigation Detail
     <div class="content" data-number="1">
       {% for t in textevidence_edits %}
     <div class = 'container my-4'>
-    <div class="card" style="background:#EFE7E7">
+    <div style="background-color: #E8E8E8;">
         <h5 class="card-header " style="text-align:center">{{ t.edit_title }}</h5>
         <div class="card-body">
           <p class="card-text">{{t.edit_content}}</p>
@@ -242,7 +262,7 @@ Investigation Detail
   <div class="content" data-number="2">
     {% for f in fileevidence_edits %}
     <div class = 'container my-4'>
-    <div class="card" style="background:#EFE7E7">
+    <div style="background-color: #E8E8E8;">
         <h5 class="card-header" style="text-align:center" >{{ f.edit_title }}</h5>
         <div class="card-body" style="text-align:center">
           <p class="card-text">{{f.file_name}}</p>
@@ -265,7 +285,7 @@ Investigation Detail
 <div class="content" data-number="3">
   {% for s in suspect_edits %}
     <div class = 'container my-4'>
-    <div class="card" style="background:#EFE7E7">
+    <div style="background-color: #E8E8E8;">
         <h5 class="card-header" style="text-align:center">{{ s.suspect_name }}</h5>
         <div class="card-body">
           <p class="card-text">{{s.suspect_contact}}</p>
@@ -289,7 +309,7 @@ Investigation Detail
 <div class="content" data-number="4">
   {% for l in lead_edits %}
     <div class = 'container my-4'>
-    <div class="card" style="background:#EFE7E7">
+    <div style="background-color: #E8E8E8;">
         <h5 class="card-header" style="text-align:center">{{ l.edit_title }}</h5>
         <div class="card-body">
           <p class="card-text">{{l.edit_content}}</p>
@@ -307,7 +327,7 @@ Investigation Detail
 <div class="content" data-number="5">
   {% for c in case_statuses %}
     <div class = 'container my-4'>
-    <div class="card" style="background:#EFE7E7">
+    <div style="background-color: #E8E8E8;">
         <h5 class="card-header" style="text-align:center">{{ c.status_title }}</h5>
         <div class="card-body">
           <p class="card-text">{{c.status_content}}</p>

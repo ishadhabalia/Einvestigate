@@ -2,19 +2,22 @@
 
 {% load static %}
 {% block styles %}
+body{
+  background-color: #f7f7f7;
+}
 
     .content:not(:first-child) {
     display: none;
     }
     h3{
   text-align:center;
-  color:#D65959;
+  color: #5e6ab0;
 }
 .editbtn {
 			width: 30%;
 			padding:10px;
 			margin-top:30px;
-			background: #D65959!important;
+			background: #5e6ab0;!important;
 			color: white !important;
       margin-left:20%;
     
@@ -23,7 +26,8 @@
     {
        margin-top:20px;
        width:80%;
-       padding-left:50px;
+       padding-left:0px;
+       padding-right: 0px;
     }
 {% endblock %} 
 {% block title %}
@@ -79,8 +83,8 @@ Investigation Edit
 
 
 <!-- options for adding text/file/suspects/leads gathered -->
-<div class="container py-2 selectSection">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<div class="container py-2 selectSection" style="background-color: #E8E8E8;">
+  <nav class="navbar navbar-expand-lg navbar-light" >
     <a class="navbar-brand" >Add</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -116,7 +120,7 @@ Investigation Edit
 <div class="container py-5 contentSection">
   
   <!-- Form for text evidence -->
-  <div class="card card-outline-secondary content " data-number="1" style="margin-top:-40px">
+  <div class="card-outline-secondary content " data-number="1" style="margin-top:-40px">
       <div class="card-header">
         <h3 class="mb-0">Add Text</h3>
       </div>
@@ -149,7 +153,7 @@ Investigation Edit
     </div>
 
     <!-- Form for Evidence Files -->
-    <div class="card card-outline-secondary content" data-number="2">
+    <div class="card-outline-secondary content" data-number="2">
       <div class="card-header">
         <h3 class="mb-0">Add Files</h3>
       </div>
@@ -183,7 +187,7 @@ Investigation Edit
 
 
     <!-- Form for suspects -->
-    <div class="card card-outline-secondary content" data-number="3">
+    <div class="card-outline-secondary content" data-number="3">
       <div class="card-header">
         <h3 class="mb-0">Add Suspects</h3>
       </div>
@@ -228,7 +232,7 @@ Investigation Edit
     </div>
 
     <!-- Form for Leads -->
-    <div class="card card-outline-secondary content " data-number="4">
+    <div class="card-outline-secondary content " data-number="4">
       <div class="card-header">
         <h3 class="mb-0">Add Leads Gathered</h3>
       </div>
@@ -262,7 +266,7 @@ Investigation Edit
 
 
     <!-- Form for Updating case status -->
-    <div class="card card-outline-secondary content " data-number="5">
+    <div class="card-outline-secondary content " data-number="5">
       <div class="card-header">
         <h3 class="mb-0">Update Case Status</h3>
       </div>
