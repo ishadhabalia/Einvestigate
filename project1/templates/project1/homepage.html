@@ -5,11 +5,19 @@
 a:hover{
   color: #D65959;
 }
+.carousel-control-next,
+.carousel-control-prev ,.carousel-indicators  {
+    filter: invert(100%);
+}
+.nav-link{
+  font-size:18px;
+}
+
 {% endblock %}
   
 {% block content %}
 <div class="bg-dark">
-<nav class="navbar navbar-expand-lg navbar-dark  p-3" style="background-color:rgba(0,0,0,0.2)">
+<nav class="navbar navbar-expand-lg navbar-dark  p-3 py-4" style="background-color:#5e6ab0;">
 
 
         <a class="navbar-brand" mx-3 px-4" href="#">Einvestigate</a>
@@ -36,7 +44,7 @@ a:hover{
 {% endif %}
 </li>
       <li class="nav-item ">
-        <a class="nav-link mx-4" href="{% url 'Contact_Us' %}">About Us</a>
+        <a class="nav-link mx-4" href="{% url 'About_Us' %}">About Us</a>
       </li>
       <li class="nav-item">
         <a class="nav-link mx-4" href="{% url 'Statistics' %}">Statistics</a>
@@ -115,7 +123,7 @@ a:hover{
   </nav> {% endcomment %}
     
 
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+ <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -123,18 +131,18 @@ a:hover{
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-    <div class="text"><h2><u>HELPLINE NUMBERS</u></h2>Often when in distress or crisis, we tend to lose sight of things, and become lost and confused as to what to do next. In such situations, a little bit of carefulness and preparedness is all that is needed from our side to handle it. Thankfully, we have access to emergency services when those events occur. To assist people in such unnerving situations there are various helpline numbers.To know more <a href= "https://indianhelpline.com/" target="_blank">Click here</a></div>
-      <img class="d-block w-100" src="{% static 'project1/images/bg1.jpg' %}" height="700vh"alt="First slide">
+    
+      <img class="d-block w-100" src="{% static 'project1/images/bg_1_new.png' %}" height="700vh"alt="First slide">
     </div>
    
     <div class="carousel-item">
-    <div class="text"><h2><u>CYBERSECURITY</u></h2>Cyberattacks can happen on a global scale as well with hackers breaching government organizations. Cybersecurity is important because it encompasses everything that pertains to protecting our sensitive data, personally identifiable information (PII), protected health information (PHI), personal information, intellectual property, data, and governmental and industry information systems from theft and damage attempted by criminals and adversaries. To know more <a href= "https://www.dsci.in/content/cyber-security" target="_blank">Click here</a></div>
-      <img class="d-block w-100" src="{% static 'project1/images/bg2.jpg' %}" height="700vh" alt="Second slide">
+    
+      <img class="d-block w-100" src="{% static 'project1/images/bg_2_new.png' %}" height="700vh" alt="Second slide">
     </div>
     
     <div class="carousel-item">
-     <div class="text"><h2><u>SAFETY TIPS</u></h2>Crime prevention can reduce the long term costs associated both economic and social. Effective, responsible crime prevention enhances the quality of life of all citizens. Often times, there are steps that people can take to protect themselves and reduce the risk that they will become victimized. Staying alert, minimizing distractions, and listening to your instincts can protect you from harm when you’re out and about. To know more such tips <a href= "http://mahapolice.gov.in/en/safety-tips/" target="_blank">Click here</a></div>
-     <img class="d-block w-100" src="{% static 'project1/images/bg3.jpg' %}" height="700vh" alt="Third slide">
+     
+     <img class="d-block w-100" src="{% static 'project1/images/bg_3_new.png' %}" height="700vh" alt="Third slide">
     
     </div>
   </div>
@@ -146,48 +154,47 @@ a:hover{
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
   </a>
-</div>
-
+</div> 
 <div class="container">
   <div class="card-deck border-primary">
     <div class="card d-flex">
       <img class="card-img-top" src="{% static 'project1/images/robbery.svg' %}" alt="Card image cap">
       <div style="text-align:center" class="card-body ">
-        <h5 style="text-align:center;color:#D65959" class="card-title ">ROBBERY</h5>
-        <p class="card-text " style="color:#2B2727">Robbery is the crime of taking or attempting to take anything of value by force, threat of force, or by putting the victim in fear. Robbery is differentiated from other forms of theft. </p>
+        <h5 style="text-align:center;color:#5e6ab0" class="card-title ">ROBBERY</h5>
+        <p class="card-text " style="color:#5e6ab0">Robbery is the crime of taking or attempting to take anything of value by force, threat of force, or by putting the victim in fear. Robbery is differentiated from other forms of theft. </p>
         <p class="card-text"> <small class="text-muted"><a href= "https://en.wikipedia.org/wiki/Robbery" target="_blank">CLICK HERE</a> to read more</small></p>
       </div>
     </div>
     <div class="card d-flex">
       <img class="card-img-top" src="{% static 'project1/images/corruption.svg' %}" alt="Card image cap">
       <div  style="text-align:center" class="card-body">
-        <h5 style="text-align:center ;color:#D65959"" >CORRUPTION</h5>
-        <p class="card-text" style="color:#2B2727">Corruption is a form of criminal offense undertaken by a person or organization  with a position of authority, to acquire illicit benefit or abuse power for one's private gain.</p>
+        <h5 style="text-align:center ;color:#5e6ab0"" >CORRUPTION</h5>
+        <p class="card-text" style="color:#5e6ab0">Corruption is a form of criminal offense undertaken by a person or organization  with a position of authority, to acquire illicit benefit or abuse power for one's private gain.</p>
         <p class="card-text"> <small class="text-muted"><a href= "https://en.wikipedia.org/wiki/Corruption" target="_blank">CLICK HERE</a> to read more</small></p>
       </div>
     </div>
     <div class="card d-flex">
       <img class="card-img-top" src="{% static 'project1/images/murder.svg' %}" alt="Card image cap">
       <div style="text-align:center" class="card-body">
-        <h5 style="text-align:center ;color:#D65959"" class="card-title">VIOLENT CRIME</h5>
-        <p class="card-text" style="color:#2B2727">A violent crime, violent felony, crime of violence or crime of a violent nature is a crime in which an offender or perpetrator uses or threatens to use force upon a victim.</p>
+        <h5 style="text-align:center ;color:#5e6ab0"" class="card-title">VIOLENT CRIME</h5>
+        <p class="card-text" style="color:#5e6ab0">A violent crime, violent felony, crime of violence or crime of a violent nature is a crime in which an offender or perpetrator uses or threatens to use force upon a victim.</p>
       <p class="card-text"><small class="text-muted"><a href= "https://en.wikipedia.org/wiki/Violent_crime" target="_blank">CLICK HERE</a> to read more</small></p> 
       </div>
     </div>
     <div class="card d-flex">
       <img class="card-img-top" src="{% static 'project1/images/poaching.svg' %}" alt="Card image cap">
       <div style="text-align:center" class="card-body">
-        <h5 style="text-align:center ;color:#D65959"" class="card-title">POACHING</h5>
-        <p class="card-text" style="color:#2B2727">Poaching is the illegal hunting or capturing of wild animals. Poaching is a major existential threat to numerous wild organisms worldwide and is a contributor to biodiversity loss.</p>
+        <h5 style="text-align:center ;color:#5e6ab0" class="card-title">POACHING</h5>
+        <p class="card-text" style="color:#5e6ab0">Poaching is the illegal hunting or capturing of wild animals. Poaching is a major existential threat to numerous wild organisms worldwide and is a contributor to biodiversity loss.</p>
              <p class="card-text"><small class="text-muted"><a href= "https://en.wikipedia.org/wiki/Poaching" target="_blank">CLICK HERE</a> to read more</small></p> 
       </div>
     </div>
   </div>
 </div>
 
-<footer class="bg-dark text-center text-white">
+<footer class="text-center text-white" style="background-color:#5e6ab0;">
   <!-- Grid container -->
-  <div class="container p-4 pb-0">
+  <div class="container p-4 pb-0" >
     <!-- Section: Social media -->
     <section class="mb-4">
       <!-- Facebook -->
