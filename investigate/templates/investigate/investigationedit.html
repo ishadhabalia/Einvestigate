@@ -13,6 +13,9 @@ body{
   text-align:center;
   color: #5e6ab0;
 }
+.header-btn{
+  color:white;
+}
 .editbtn {
 			width: 30%;
 			padding:10px;
@@ -36,7 +39,7 @@ Investigation Edit
   
 {% block content %}
 <div class="bg-dark">
-<nav class="navbar navbar-expand-lg navbar-dark  p-3" style="background-color:rgba(0,0,0,0.2)">
+<nav class="navbar navbar-expand-lg navbar-dark  p-3">
 
 
         <a class="navbar-brand" mx-3 px-4" href="#">Einvestigate</a>
@@ -85,14 +88,14 @@ Investigation Edit
 <!-- options for adding text/file/suspects/leads gathered -->
 <div class="container py-2 selectSection" style="background-color: #E8E8E8;">
   <nav class="navbar navbar-expand-lg navbar-light" >
-    <a class="navbar-brand" >Add</a>
+    <a class="navbar-brand" style="color:white;" >Add</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-            <button type="button" data-number="1" class="btn active" id="clicked">Text Evidence</button>
+            <button type="button" data-number="1" class="btn active header-btn" id="clicked">Text Evidence</button>
             <script>
               window.onload = function(){
               document.getElementById('clicked').click();
@@ -100,16 +103,16 @@ Investigation Edit
             </script>
         </li>
         <li class="nav-item">
-          <button type="button" data-number="2" class="btn">Evidence Files</button>
+          <button type="button" data-number="2" class="btn header-btn">Evidence Files</button>
         </li>
         <li class="nav-item">
-          <button type="button" data-number="3" class="btn">Suspects</button>
+          <button type="button" data-number="3" class="btn header-btn">Suspects</button>
         </li>
         <li class="nav-item">
-          <button type="button" data-number="4" class="btn">Leads Gathered</button>
+          <button type="button" data-number="4" class="btn header-btn">Leads Gathered</button>
         </li>
         <li class="nav-item">
-          <button type="button" data-number="5" class="btn">Update Case Status</button>
+          <button type="button" data-number="5" class="btn header-btn">Update Case Status</button>
         </li>
       </ul>
     </div>

@@ -8,8 +8,8 @@
 Criminal Record
 {% endblock title %}
 {% block content %}
-<div class="bg-dark">
-<nav class="navbar navbar-expand-lg navbar-dark  p-3" style="background-color:rgba(0,0,0,0.2)">
+<div>
+<nav class="navbar navbar-expand-lg navbar-dark  p-3">
 
 
         <a class="navbar-brand" mx-3 px-4" href="#">Einvestigate</a>
@@ -54,7 +54,7 @@ Criminal Record
    </div> 
    
    <table class="table table-bordered table-hover ">
-   <thead class="thead-dark">
+   <thead>
     <tr class="text-center" >
     <th colspan="2">PERSONAL DETAILS</th>
    </tr>
@@ -80,7 +80,7 @@ Criminal Record
    
    {%for c in cc%}
    <table class="table table-bordered table-hover ">
-   <thead class="thead-dark">
+   <thead>
     <tr class="text-center" >
     <th colspan="2">CASE ID: {{ c.case_id.case_id }}</th>
    </tr>
