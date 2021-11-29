@@ -3,14 +3,19 @@
 {% block styles %}
 .container
     {
-       margin-top:100px;
+       margin-top:10vh;
        width:75%;
        padding-left:50px;
 
     }
     h3,h4{
   text-align:center;
-  color:#D65959;
+  color:#5e6ab0;
+}
+.bordered-box{
+    border-width: 2px;
+    border-color:#5e6ab0;
+    border-radius: 1%;
 }
 
 {% endblock %} 
@@ -76,39 +81,44 @@ Track Case Status
     </div>
   </nav> </div>
 <div class='container '>
-    <div class="card card-outline-secondary">
-        <div class="card-header">
-    <h3>CASE STATUS</h3>
+    <div class="card card-outline-secondary bordered-box">
+        <div class="card-header" style="background-color:#5e6ab0 ;">
+    <h3 style="color:white;">CASE STATUS</h3>
      </div>
     <h4>Case ID: {{ case.case_id }}</h4>
     <div class="card-body">
-    <p>Case Description: {{ case.case_description }} </p>
-    <p>Case Category: {{ case.case_category }} </p>
+      <div style="margin: 0 13vw;">
+        <p style="font-size:medium">Case Description: {{ case.case_description }} </p>
+      <p style="font-size:medium">Case Category: {{ case.case_category }} </p>
+      </div>
     <hr>
-    <div class="row">
-        <div class="col-lg-6">
-            <p>Crime Location: {{ case.crime_location }}</p>
-        </div>
-        <div class="col-lg-6">
-            <p>Crime Date: {{ case.crime_date }}</p>
-        </div>
+
+    <div class="container" style="background-color: #f7f7f7; margin-top: 1vh;">
+    <div class="row no-gutters">
+      <div class="col-lg-6 vertical-align text-left my-2" >
+        Crime Location: {{ case.crime_location }}
+      </div>
+      <div class="col-lg-6 vertical-align text-left my-2">
+        Crime Date: {{ case.crime_date }}
+      </div>
     </div>
-    <div class="row">
-        <div class="col-lg-6">
-            <p>Complainant Name: {{ case.complainant_name }}</p>
-        </div>
-        <div class="col-lg-6">
-            <p>Accused Name: {{ case.accused_name }}</p>
-        </div>
+    <div class="row no-gutters">
+      <div class="col-lg-6 vertical-align text-left" >
+        Complainant Name: {{ case.complainant_name }}
+      </div>
+      <div class="col-lg-6 vertical-align text-left">
+        Accused Name: {{ case.accused_name }}
+      </div>
     </div>
+  </div>
 </div>
 </div>
 
-<div class="container">
+<div >
     {% for s in statuses %}
-      <div class = 'container my-4'>
-      <div class="card">
-          <h5 class="card-header">{{ s.status_title }}</h5>
+      <div class = 'container my-4 '>
+      <div class="card bordered-box">
+          <h5 class="card-header text-center">{{ s.status_title }}</h5>
           <div class="card-body">
             <p class="card-text">{{s.status_content}}</p>
           </div>
